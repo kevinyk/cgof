@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Life</title>
+	<script type="text/javascript" src="life.js"></script>
+	<style type="text/css">
+		*{
+			margin:0px;
+			padding:0px;
+		}
+		body{
+			text-align: center;
+		}
+		h1{
+
+		}
+		div{
+			display:inline-block;
+		}
+		div#container{
+			position:relative;
+			top:2px;
+			text-align: center;
+			/*height:100%;*/
+			/*width:100%;*/
+
+		}
+		div#world{
+			display:inline-block;
+			border:1px solid black;
+		}
+		div.block{
+			/*border:solid 0px black;*/
+			height:5px;
+			width:5px;
+			margin:1px 1px 0px 0px;
+			display:inline-block;
+		}
+		div.alive{
+			display:inline-block;
+			background-color: black;
+		}
+		div.row{
+			display:block;
+			margin-top:1px;
+			padding:0px;
+			height:5px;
+		}
+	</style>
+</head>
+<body>
+
+	<div id="container">
+		<h2>Conway's Game of Life</h2>
+		<div id="world">
+			
+		</div>
+	</div>
+	<script type="text/javascript">
+		var world = document.getElementById('world');
+		function drawWorld(){
+			var output = "";
+			for (var x=offset; x<myGrid.length-offset; x++){
+				output += "<div class='row'>";
+				for (var y=offset; y<myGrid[x].length-offset; y++){
+					if (myGrid[x][y] == 1){
+						output += "<div class='alive block'></div>";
+					}else{
+						output += "<div class='dead block'></div>";
+					}
+				}
+				output += "</div>";
+			}
+			// console.log(output);
+			world.innerHTML=output;
+		}
+		drawWorld();
+		setInterval(function(){
+			drawWorld();
+			step(myGrid);
+			// console.log('hi');
+		},100)
+		// var numGen = 2;
+		// for(var i=0;i<numGen; i++){
+		// 	step(myGrid);
+		// 	drawWorld();
+		// }
+		// setTimeout(function(){
+		// 	step(myGrid);
+		// 	drawWorld();
+		// },1000)
+	</script>
+</body>
+</html>
